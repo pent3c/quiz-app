@@ -31,22 +31,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
       <Header>
         <Title>{quiz.title}</Title>
         <Text>{quiz.question}</Text>
-      </Header>
-      <Controllers>
-        <ContolButton
-          onClick={() => controlLevel("prev")}
-          disabled={currentLevel === 0}
-        >
-          prev
-        </ContolButton>
-        <ContolButton
-          onClick={() => controlLevel("next")}
-          disabled={currentLevel === data.length - 1}
-        >
-          next
-        </ContolButton>
-        
-      </Controllers>
+      </Header> 
       <Wrapper isImg={isImg}>
         {isImg && (
           <QuestionImg>
@@ -77,24 +62,49 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
             ))}
           </QuizChoices>
         )}
-      </Wrapper>
+        </Wrapper>
+        <Controllers>
+            <ContolButton
+              onClick={() => controlLevel("prev")}
+              disabled={currentLevel === 0} >
+              prev
+            </ContolButton>
+            <ContolButton
+              onClick={() => controlLevel("next")}
+              disabled={currentLevel === data.length - 1} >
+              next
+            </ContolButton>
+      </Controllers>
     </Quiz>
   );
 };
 
 const ContolButton = styled.button`
   padding: 10px;
-  background-color: aqua;
+  background-color: white;
   cursor: pointer;
-  z-index: 0;
+  box-shadow: 7px 8px 1px -3px #adadad;
+  border: 2px solid #adadad;
+  width: 32%;
+  margin-top: 25px;
+
+  &:first-child {
+    border-radius: 10px 0 0 10px;
+  }
+  &:last-child {
+    border-radius: 0 10px 10px 0;
+  }
+  :hover {
+    background-color: #e7e7e734;
+    /* color: white; */
+  }
 `;
 
 const Controllers = styled.div`
-  position: absolute;
   top: 50%;
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; 
   align-items: center;
 `;
 
