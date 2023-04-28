@@ -97,30 +97,34 @@ const ContolButton = styled.button`
   /* padding: 10px; */
   background-color: white;
   cursor: pointer;
-  box-shadow: 7px 8px 1px -3px #adadad;
-  border: 2px solid #adadad;
-  width: 32%;
-  margin-top: 25px;
+  box-shadow: 0px 8px 1px 0px #adadad;
+  border: unset;
+  border-block: 2px solid #adadad;
   height: 50px;
+  flex: 1;
+  transition: flex 250ms ease-out;
 
   &:first-child {
     border-radius: 10px 0 0 10px;
+    border-inline: 2px solid #adadad;
   }
   &:last-child {
     border-radius: 0 10px 10px 0;
+    border-right: 2px solid #adadad;
   }
   :hover {
     background-color: #e7e7e734;
-    /* color: white; */
+    flex: 3;
   }
 `;
 
 const Controllers = styled.div`
   top: 50%;
-  width: 100%;
+  width: 60%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 25px;
 `;
 
 const Wrapper = styled.div`
@@ -184,6 +188,7 @@ const QuizChoices = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
+  align-items:center;
   gap: 15px;
 `;
 
@@ -191,14 +196,13 @@ const Choice = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  margin: 0 auto;
   background-color: ${(props) => (props.isSelected ? "#30c4d8" : "#fff")};
   width: 60%;
   padding: 15px 20px;
   border-radius: 10px;
   cursor: pointer;
   border: 2px solid ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
-  box-shadow: 7px 8px 1px -3px ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
+  box-shadow: 5px 8px 1px 0px ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
 
   transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -209,7 +213,7 @@ const Choice = styled.div`
     background-color: white;
     color: black;
   }
-  :hover {
+  :hover:not(${(props) => (!props.isSelected)}) {
     background-color: #e7e7e734;
     /* color: white; */
   }
@@ -241,6 +245,9 @@ const Quiz = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.47);
   padding: 40px 0;
   border-radius: 15px;
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
   /* padding: 20px; */
 `;
 
