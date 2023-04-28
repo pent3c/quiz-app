@@ -73,7 +73,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
           <FontAwesomeIcon
             icon={faAngleLeft}
             size="2xl"
-            style={{ color: "#383838" }}
+            style={{ color:  currentLevel === 0 ? "lightgray" : "#383838"}}
           />
         </ContolButton>
         <ContolButton
@@ -85,7 +85,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
             icon={faAngleRight}
             beat={selected !== null}
             size="2xl"
-            style={{ color: "#383838" }}
+            style={{ color:  currentLevel === data.length - 1 ? "lightgray" : "#383838"}}
           />
         </ContolButton>
       </Controllers>
