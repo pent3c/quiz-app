@@ -1,9 +1,21 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { data } from "../data";
 
-const QuizElement = ({ quiz }) => {
+const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   const [isImg, setIsImg] = useState(false);
   const [selected, setSelected] = useState(null);
+
+  const controlLevel = (value) => {
+    if (value === "next" && currentLevel !== data.length - 1) {
+      setCurrentLevel((prev) => prev + 1);
+      return;
+    }
+    if (value === "prev" && currentLevel > 0) {
+      setCurrentLevel((prev) => prev - 1);
+      return;
+    }
+  };
 
   useEffect(() => {
     setSelected(null);
@@ -20,6 +32,21 @@ const QuizElement = ({ quiz }) => {
         <Title>{quiz.title}</Title>
         <Text>{quiz.question}</Text>
       </Header>
+      <Controllers>
+        <ContolButton
+          onClick={() => controlLevel("prev")}
+          disabled={currentLevel === 0}
+        >
+          prev
+        </ContolButton>
+        <ContolButton
+          onClick={() => controlLevel("next")}
+          disabled={currentLevel === data.length - 1}
+        >
+          next
+        </ContolButton>
+        
+      </Controllers>
       <Wrapper isImg={isImg}>
         {isImg && (
           <QuestionImg>
@@ -54,6 +81,22 @@ const QuizElement = ({ quiz }) => {
     </Quiz>
   );
 };
+
+const ContolButton = styled.button`
+  padding: 10px;
+  background-color: aqua;
+  cursor: pointer;
+  z-index: 0;
+`;
+
+const Controllers = styled.div`
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   display: ${(props) => (props.isImg ? "flex" : null)};
