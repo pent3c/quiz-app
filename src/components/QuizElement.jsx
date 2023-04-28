@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { data } from "../data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
 const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   const [isImg, setIsImg] = useState(false);
@@ -31,7 +33,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
       <Header>
         <Title>{quiz.title}</Title>
         <Text>{quiz.question}</Text>
-      </Header> 
+      </Header>
       <Wrapper isImg={isImg}>
         {isImg && (
           <QuestionImg>
@@ -62,31 +64,44 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
             ))}
           </QuizChoices>
         )}
-        </Wrapper>
-        <Controllers>
-            <ContolButton
-              onClick={() => controlLevel("prev")}
-              disabled={currentLevel === 0} >
-              prev
-            </ContolButton>
-            <ContolButton
-              onClick={() => controlLevel("next")}
-              disabled={currentLevel === data.length - 1} >
-              next
-            </ContolButton>
+      </Wrapper>
+      <Controllers>
+        <ContolButton
+          onClick={() => controlLevel("prev")}
+          disabled={currentLevel === 0}
+        >
+          <FontAwesomeIcon
+            icon={faAngleLeft}
+            size="2xl"
+            style={{ color: "#383838" }}
+          />
+        </ContolButton>
+        <ContolButton
+          onClick={() => controlLevel("next")}
+          disabled={currentLevel === data.length - 1}
+          selected={selected}
+        >
+          <FontAwesomeIcon
+            icon={faAngleRight}
+            beat={selected !== null}
+            size="2xl"
+            style={{ color: "#383838" }}
+          />
+        </ContolButton>
       </Controllers>
     </Quiz>
   );
 };
 
 const ContolButton = styled.button`
-  padding: 10px;
+  /* padding: 10px; */
   background-color: white;
   cursor: pointer;
   box-shadow: 7px 8px 1px -3px #adadad;
   border: 2px solid #adadad;
   width: 32%;
   margin-top: 25px;
+  height: 50px;
 
   &:first-child {
     border-radius: 10px 0 0 10px;
@@ -104,7 +119,7 @@ const Controllers = styled.div`
   top: 50%;
   width: 100%;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
 `;
 
@@ -183,7 +198,7 @@ const Choice = styled.div`
   border-radius: 10px;
   cursor: pointer;
   border: 2px solid ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
-  box-shadow: 7px 8px 1px -3px  ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
+  box-shadow: 7px 8px 1px -3px ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
 
   transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 

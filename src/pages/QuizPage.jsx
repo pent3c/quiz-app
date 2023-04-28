@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   height: 100vh;
   display: grid;
   place-content: center;
+  border-top-right-radius: 2px;
 
 `;
 
