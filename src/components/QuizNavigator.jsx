@@ -70,14 +70,15 @@ const Wrapper = styled.div`
 const Container = styled.div`
   position: fixed;
   width: 400px;
-  /* height: 100vh; */
   top: 70px;
-  /* left: 0; */
-  /* right: 0; */
   padding: 10px;
   background-color: #ffffff;
   transform: ${(props) => (props.openNavigator ? null : "translateX(-100%)")};
   transition: 250ms ease-in-out;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export default QuizNavigator;

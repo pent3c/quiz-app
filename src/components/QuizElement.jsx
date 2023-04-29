@@ -28,7 +28,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   useEffect(() => {
     setSelected(null);
     setIsImg(quiz.isImg);
-    setSelected(user.answers[quiz.id] || null)
+    setSelected(user.answers[quiz.id] ?? null)
   }, [quiz]);
 
   const handleSelectClick = (choice) => {
@@ -144,9 +144,9 @@ const Controllers = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: ${(props) => (props.isImg ? "flex" : null)};
+  display: flex; 
   justify-content: center;
-  width: 900px;
+  width: 100%;
 `;
 
 const QuestionImg = styled.div`
@@ -201,11 +201,15 @@ const QuizId = styled.p`
 `;
 
 const QuizChoices = styled.div`
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 15px;
+  width: 60%;
+
+  @media (max-width: 768px) {
+      width: 80%;
+  }
 `;
 
 const Choice = styled.div`
@@ -213,7 +217,7 @@ const Choice = styled.div`
   align-items: center;
   gap: 20px;
   background-color: ${(props) => (props.isSelected ? "#30c4d8" : "#fff")};
-  width: 60%;
+  width: 100%;
   padding: 15px 20px;
   border-radius: 10px;
   cursor: pointer;
@@ -250,8 +254,6 @@ const Header = styled.div`
 `;
 
 const Quiz = styled.div`
-  min-width: 550px;
-  max-width: fit-content;
   /* From https://css.glass */
   /* From https://css.glass */
   background: #f5f5f5;
@@ -265,6 +267,11 @@ const Quiz = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 70%;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
   /* padding: 20px; */
 `;
 

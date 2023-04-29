@@ -20,7 +20,7 @@ const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
           <ToggleList onClick={() => setOpenNavigator((prev) => !prev)} openNavigator={openNavigator}>
             <FontAwesomeIcon icon={faListCheck} fade={!openNavigator} size="xl" style={{color: "#000000",}} />
           </ToggleList>
-          <Logo>PenQuiz</Logo>
+          <Logo></Logo>
         </Right>
         <Center>
           <div>
@@ -77,6 +77,14 @@ const Logo = styled.p`
   font-size: xx-large;
   font-weight: 700;
   color: #30c4d8;
+
+  &:before{
+      content: 'PenQuiz';
+
+      @media (max-width: 768px) {
+          content: 'PQ';
+      }
+  }
 `;
 
 const Right = styled.div`

@@ -43,11 +43,11 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin: auto 0px;
   width: 100vw;
   height: 100vh;
-  display: grid;
-  place-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-top-right-radius: 2px;
 `;
 
