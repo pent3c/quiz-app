@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 
 const QuizPage = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
-  const [openNavigator, setOpenNavigator] = useState(true);
+  const [openNavigator, setOpenNavigator] = useState(false);
 
   const user = useSelector((state) => state.user);
   const progress = Object.keys(user?.answers).length;

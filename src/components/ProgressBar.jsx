@@ -21,7 +21,7 @@ const ProgressBar = ({ value,setOpenNavigator,openNavigator }) => {
   }, [value]);
 
   return (
-    <div style={{ width: "100%", position: "fixed" }}>
+    <div style={{ width: "100%", position: "fixed",zIndex:1 }}>
       <NavBar width={value} setOpenNavigator={setOpenNavigator} openNavigator={openNavigator}/>
       <div
         style={{

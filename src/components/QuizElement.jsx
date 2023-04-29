@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserAnswer } from "../redux/userRedux";
+import { CountdownTimer } from "./CountdownTimer";
 
 const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   const [isImg, setIsImg] = useState(false);
@@ -41,9 +42,22 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
     );
   };
 
+  const [dateTimeToExpry, setDateTimeToExpry] = useState(0);
+
+  const THREE_DAYS_IN_MS = 1 * 1 * 10 * 60 * 1000;
+const NOW_IN_MS = new Date().getTime();
+
+  useEffect(() => {
+    setDateTimeToExpry(THREE_DAYS_IN_MS+NOW_IN_MS);
+  }, []);
+
   return (
     <Quiz>
       <Header>
+        <MobileCountdown>
+      <CountdownTimer targetDate={dateTimeToExpry} />
+
+        </MobileCountdown>
         <Title>{quiz.title}</Title>
         <Text>{quiz.question}</Text>
       </Header>
@@ -108,6 +122,15 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
     </Quiz>
   );
 };
+
+const MobileCountdown = styled.div`
+  /* padding: 15px 0; */
+  display: none;
+  border-bottom: 1px solid #dddddd;
+  @media (max-width: 768px) {
+    display: block;
+  }
+`
 
 const ContolButton = styled.button`
   /* padding: 10px; */
@@ -238,11 +261,15 @@ const Choice = styled.div`
     background-color: #e7e7e734;
     /* color: white; */
   }
+  @media (max-width: 768px) {
+    padding : 5px 15px ;
+  }
 `;
 
 const Title = styled.h2`
   font-size: 18px;
   font-weight: 700;
+  
 `;
 const Text = styled.p`
   font-size: 18px;
@@ -262,6 +289,7 @@ const Quiz = styled.div`
   backdrop-filter: blur(2.5px);
   -webkit-backdrop-filter: blur(2.5px);
   border: 1px solid rgba(255, 255, 255, 0.47);
+  //glass end
   padding: 40px 0;
   border-radius: 15px;
   display: flex;
@@ -272,6 +300,10 @@ const Quiz = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
+    height: 100vh;
+    /* margin-top: 100px; */
+    align-items: center;
+    justify-content: center;
   }
   /* padding: 20px; */
 `;

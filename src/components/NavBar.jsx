@@ -1,31 +1,39 @@
-import { faArrowRight, faListCheck, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faListCheck,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { CountdownTimer } from "./CountdownTimer";
 import { useEffect, useState } from "react";
 
-const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
+const NavBar = ({ width, setOpenNavigator, openNavigator }) => {
   const [dateTimeToExpry, setDateTimeToExpry] = useState(0);
-  const THREE_DAYS_IN_MS = 1 * 1 * 10 * 60 * 1000;
-  const NOW_IN_MS = new Date().getTime();
 
   useEffect(() => {
-    setDateTimeToExpry(NOW_IN_MS + THREE_DAYS_IN_MS);
+    setDateTimeToExpry(1682778110605);
   }, []);
 
   return (
     <Nav>
       <Wrapper>
         <Right>
-          <ToggleList onClick={() => setOpenNavigator((prev) => !prev)} openNavigator={openNavigator}>
-            <FontAwesomeIcon icon={faListCheck} fade={!openNavigator} size="xl" style={{color: "#000000",}} />
+          <ToggleList
+            onClick={() => setOpenNavigator((prev) => !prev)}
+            openNavigator={openNavigator}
+          >
+            <FontAwesomeIcon
+              icon={faListCheck}
+              fade={!openNavigator}
+              size="xl"
+              style={{ color: "#000000" }}
+            />
           </ToggleList>
           <Logo></Logo>
         </Right>
         <Center>
-          <div>
-            <CountdownTimer targetDate={dateTimeToExpry} />
-          </div>
+          <CountdownTimer targetDate={dateTimeToExpry} />
         </Center>
         <Left>
           <SubmitButton>
@@ -43,13 +51,14 @@ const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
 };
 
 const ToggleList = styled.div`
-  filter: invert(${props => !props.openNavigator});
+  filter: invert(${(props) => !props.openNavigator});
   background-color: white;
   padding: 10px;
   border-radius: 10px;
-  border: 2px solid ${props => props.openNavigator ? "black" : "#434343"};
+  border: 2px solid ${(props) => (props.openNavigator ? "black" : "#434343")};
   transition: 250ms ease-in-out;
-  box-shadow: 2px 3px 1px 0px ${props => props.openNavigator ? "white" : "#434343"};;
+  box-shadow: 2px 3px 1px 0px
+    ${(props) => (props.openNavigator ? "white" : "#434343")};
   cursor: pointer;
 `;
 
@@ -63,12 +72,17 @@ const SubmitButton = styled.button`
   letter-spacing: 1.3px;
   font-weight: 600;
   text-transform: uppercase;
-  
+
   border-radius: 10px;
   cursor: pointer;
   border: 2px solid #72bb60;
   box-shadow: 2px 3px 1px 0px #72bb60;
   color: white;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
 `;
 
 const Logo = styled.p`
@@ -78,12 +92,13 @@ const Logo = styled.p`
   font-weight: 700;
   color: #30c4d8;
 
-  &:before{
-      content: 'PenQuiz';
+  &:before {
+    content: "PenQuiz";
 
-      @media (max-width: 768px) {
-          content: 'PQ';
-      }
+    @media (max-width: 768px) {
+      content: "PQ";
+      font-size: 25px;
+    }
   }
 `;
 
@@ -95,6 +110,9 @@ const Right = styled.div`
 `;
 const Center = styled.div`
   flex: 1;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 const Left = styled.div`
   flex: 1;

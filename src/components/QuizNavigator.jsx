@@ -75,6 +75,7 @@ const Container = styled.div`
   background-color: #ffffff;
   transform: ${(props) => (props.openNavigator ? null : "translateX(-100%)")};
   transition: 250ms ease-in-out;
+  z-index: 2;
 
   @media (max-width: 768px) {
     width: 100%;
