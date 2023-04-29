@@ -11,9 +11,12 @@ import { useEffect, useState } from "react";
 const NavBar = ({ width, setOpenNavigator, openNavigator }) => {
   const [dateTimeToExpry, setDateTimeToExpry] = useState(0);
 
-  useEffect(() => {
-    setDateTimeToExpry(1682778110605);
-  }, []);
+  const THREE_DAYS_IN_MS = 1 * 1 * 10 * 60 * 1000;
+  const NOW_IN_MS = new Date().getTime();
+  
+    useEffect(() => {
+      setDateTimeToExpry(THREE_DAYS_IN_MS+NOW_IN_MS);
+    }, []);
 
   return (
     <Nav>
