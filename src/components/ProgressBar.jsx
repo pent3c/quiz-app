@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import NavBar from "./NavBar";
 
-const ProgressBar = ({ value }) => {
+const ProgressBar = ({ value,setOpenNavigator,openNavigator }) => {
   const [width, setWidth] = useState(0);
 
   useEffect(() => {
@@ -22,13 +22,14 @@ const ProgressBar = ({ value }) => {
 
   return (
     <div style={{ width: "100%", position: "fixed" }}>
-      <NavBar width={value}/>
+      <NavBar width={value} setOpenNavigator={setOpenNavigator} openNavigator={openNavigator}/>
       <div
         style={{
           top: 0,
           display: "flex",
           justifyContent: "center",
         }}
+        
       >
         <Progress width={width} />
       </div>

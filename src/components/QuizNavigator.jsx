@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { data } from "../data";
 import { useSelector } from "react-redux";
 
-const QuizNavigator = ({ openNavigator, setCurrentLevel }) => {
+const QuizNavigator = ({
+  openNavigator,
+  setOpenNavigator,
+  setCurrentLevel,
+}) => {
   const answers = useSelector((state) => state.user.answers);
 
   return (
@@ -39,19 +43,37 @@ const Qiuz = styled.div`
 `;
 
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 40px 20px;
+  padding-bottom: 120px;
+  height: calc(90vh - 70px);
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: #adadad #ffffff;
+  &::-webkit-scrollbar {
+    width: 13px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #adadad;
+    border-radius: 0px;
+    border: 3px solid #ffffff;
+  }
 `;
 
 const Container = styled.div`
   position: fixed;
   width: 400px;
   /* height: 100vh; */
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 70px;
+  /* left: 0; */
+  /* right: 0; */
   padding: 10px;
   background-color: #ffffff;
-  transform: ${(props) => (props.openNavigator ? null : "translateY(-100%)")};
+  transform: ${(props) => (props.openNavigator ? null : "translateX(-100%)")};
   transition: 250ms ease-in-out;
 `;
 

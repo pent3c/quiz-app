@@ -12,13 +12,11 @@ const QuizPage = () => {
   const [openNavigator, setOpenNavigator] = useState(true);
 
   const user = useSelector((state) => state.user);
-  const progress = Object.keys(user?.answers).length
-  
+  const progress = Object.keys(user?.answers).length;
 
   return (
     <Container>
-      {/*! fix image quiz  */}
-      <ProgressBar value={(progress / (data.length - 1)) * 100} />
+      <ProgressBar value={(progress / (data.length - 1)) * 100} setOpenNavigator={setOpenNavigator} openNavigator={openNavigator}/>
       <Wrapper>
         <QuizElement
           quiz={data[currentLevel]}
@@ -26,8 +24,11 @@ const QuizPage = () => {
           currentLevel={currentLevel}
         />
       </Wrapper>
-      <QuizNavigator openNavigator={openNavigator} setCurrentLevel={setCurrentLevel}/>
-      {/* <button onClick={() => setOpenNavigator(!openNavigator)}>open</button> */}
+      <QuizNavigator
+        openNavigator={openNavigator}
+        setOpenNavigator={setOpenNavigator}
+        setCurrentLevel={setCurrentLevel}
+      />
     </Container>
   );
 };
