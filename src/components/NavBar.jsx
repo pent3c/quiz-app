@@ -1,7 +1,7 @@
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
-import { CountdownTimer } from "./CountdownTimer ";
+import { CountdownTimer } from "./CountdownTimer";
 import { useEffect, useState } from "react";
 
 const NavBar = ({ width }) => {
@@ -26,7 +26,7 @@ const NavBar = ({ width }) => {
         </Center>
         <Left>
           <SubmitButton>
-            submite
+            submit
             <FontAwesomeIcon
               icon={faPaperPlane}
               bounce={width === 100}

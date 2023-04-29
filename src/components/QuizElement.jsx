@@ -3,10 +3,16 @@ import styled from "styled-components";
 import { data } from "../data";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleLeft, faAngleRight } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { addUserAnswer } from "../redux/userRedux";
 
 const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   const [isImg, setIsImg] = useState(false);
   const [selected, setSelected] = useState(null);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
 
   const controlLevel = (value) => {
     if (value === "next" && currentLevel !== data.length - 1) {
@@ -22,10 +28,17 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
   useEffect(() => {
     setSelected(null);
     setIsImg(quiz.isImg);
+    setSelected(user.answers[quiz.id] || null)
   }, [quiz]);
 
   const handleSelectClick = (choice) => {
     setSelected(choice);
+    dispatch(
+      addUserAnswer({
+        quizId: quiz.id,
+        userChoice: choice,
+      })
+    );
   };
 
   return (
@@ -43,8 +56,8 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
         {isImg ? (
           <GridWrapper>
             <ImageGrid>
-              {quiz?.options.map((option) => (
-                <ChoiceImg>
+              {quiz?.options.map((option,i) => (
+                <ChoiceImg key={i}>
                   <img src={option.text} alt="imageAlt" />
                 </ChoiceImg>
               ))}
@@ -52,8 +65,9 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
           </GridWrapper>
         ) : (
           <QuizChoices>
-            {quiz?.options.map((option) => (
+            {quiz?.options.map((option,i) => (
               <Choice
+                key={i}
                 id={option.id}
                 onClick={() => handleSelectClick(option.id)}
                 isSelected={selected === option.id}
@@ -73,7 +87,7 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
           <FontAwesomeIcon
             icon={faAngleLeft}
             size="2xl"
-            style={{ color:  currentLevel === 0 ? "lightgray" : "#383838"}}
+            style={{ color: currentLevel === 0 ? "lightgray" : "#383838" }}
           />
         </ContolButton>
         <ContolButton
@@ -85,7 +99,9 @@ const QuizElement = ({ quiz, currentLevel, setCurrentLevel }) => {
             icon={faAngleRight}
             beat={selected !== null}
             size="2xl"
-            style={{ color:  currentLevel === data.length - 1 ? "lightgray" : "#383838"}}
+            style={{
+              color: currentLevel === data.length - 1 ? "lightgray" : "#383838",
+            }}
           />
         </ContolButton>
       </Controllers>
@@ -188,7 +204,7 @@ const QuizChoices = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   gap: 15px;
 `;
 
@@ -202,7 +218,8 @@ const Choice = styled.div`
   border-radius: 10px;
   cursor: pointer;
   border: 2px solid ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
-  box-shadow: 5px 8px 1px 0px ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
+  box-shadow: 5px 8px 1px 0px
+    ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
 
   transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
@@ -213,7 +230,7 @@ const Choice = styled.div`
     background-color: white;
     color: black;
   }
-  :hover:not(${(props) => (!props.isSelected)}) {
+  :hover:not(${(props) => !props.isSelected}) {
     background-color: #e7e7e734;
     /* color: white; */
   }
@@ -246,7 +263,7 @@ const Quiz = styled.div`
   padding: 40px 0;
   border-radius: 15px;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
   /* padding: 20px; */
 `;

@@ -4,13 +4,21 @@ import QuizElement from "../components/QuizElement";
 import ProgressBar from "../components/ProgressBar";
 import { data } from "../data";
 import backgound from "../assets/svg/background.svg";
+import QuizNavigator from "../components/QuizNavigator";
+import { useSelector } from "react-redux";
 
 const QuizPage = () => {
   const [currentLevel, setCurrentLevel] = useState(0);
+  const [openNavigator, setOpenNavigator] = useState(true);
+
+  const user = useSelector((state) => state.user);
+  const progress = Object.keys(user?.answers).length
+  
 
   return (
     <Container>
-      <ProgressBar value={(currentLevel / (data.length - 1)) * 100} />
+      {/*! fix image quiz  */}
+      <ProgressBar value={(progress / (data.length - 1)) * 100} />
       <Wrapper>
         <QuizElement
           quiz={data[currentLevel]}
@@ -18,6 +26,8 @@ const QuizPage = () => {
           currentLevel={currentLevel}
         />
       </Wrapper>
+      <QuizNavigator openNavigator={openNavigator} setCurrentLevel={setCurrentLevel}/>
+      {/* <button onClick={() => setOpenNavigator(!openNavigator)}>open</button> */}
     </Container>
   );
 };
