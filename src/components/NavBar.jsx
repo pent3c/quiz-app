@@ -29,7 +29,7 @@ const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
         </Center>
         <Left>
           <SubmitButton>
-            submit
+            Submit
             <FontAwesomeIcon
               icon={faPaperPlane}
               bounce={width === 100}
@@ -59,8 +59,11 @@ const SubmitButton = styled.button`
   align-items: center;
   background-color: #52d830;
   padding: 12px 25px;
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 1.3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  
   border-radius: 10px;
   cursor: pointer;
   border: 2px solid #72bb60;

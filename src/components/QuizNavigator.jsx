@@ -7,6 +7,7 @@ const QuizNavigator = ({
   openNavigator,
   setOpenNavigator,
   setCurrentLevel,
+  currentLevel
 }) => {
   const answers = useSelector((state) => state.user.answers);
 
@@ -14,20 +15,21 @@ const QuizNavigator = ({
     <Container openNavigator={openNavigator}>
       <Wrapper>
         {data.map((quiz, i) => (
-          <Qiuz
+          <Quiz
             key={i}
             isSolved={answers[quiz.id] !== undefined}
             onClick={() => setCurrentLevel(quiz.id - 1)}
+            isCurrent={quiz.id-1 ===  currentLevel}
           >
             {quiz.id}- {quiz.title}
-          </Qiuz>
+          </Quiz>
         ))}
       </Wrapper>
     </Container>
   );
 };
 
-const Qiuz = styled.div`
+const Quiz = styled.div`
   padding: 5px 10px;
   background-color: ${(props) => (props.isSolved ? "#30c4d8" : "#fff")};
   padding: 12px 25px;
@@ -39,6 +41,7 @@ const Qiuz = styled.div`
     ${(props) => (props.isSolved ? "#1f8592" : "#adadad")};
   margin-bottom: 10px;
   transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: ${props=>props.isCurrent ? "translateX(15px)" : null};
   cursor: pointer;
 `;
 

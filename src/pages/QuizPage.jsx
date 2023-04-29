@@ -16,7 +16,11 @@ const QuizPage = () => {
 
   return (
     <Container>
-      <ProgressBar value={(progress / (data.length - 1)) * 100} setOpenNavigator={setOpenNavigator} openNavigator={openNavigator}/>
+      <ProgressBar
+        value={(progress / (data.length - 1)) * 100}
+        setOpenNavigator={setOpenNavigator}
+        openNavigator={openNavigator}
+      />
       <Wrapper>
         <QuizElement
           quiz={data[currentLevel]}
@@ -25,6 +29,7 @@ const QuizPage = () => {
         />
       </Wrapper>
       <QuizNavigator
+        currentLevel={currentLevel}
         openNavigator={openNavigator}
         setOpenNavigator={setOpenNavigator}
         setCurrentLevel={setCurrentLevel}
