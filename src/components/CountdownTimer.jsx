@@ -36,6 +36,7 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
         style={{
           padding: 0,
           margin: 0,
+          color: "white",
         }}
         rel="noopener noreferrer"
         className="countdown-link"
