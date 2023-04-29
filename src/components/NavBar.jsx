@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 import { CountdownTimer } from "./CountdownTimer";
 import { useEffect, useState } from "react";
+import logo from '../assets/svg/logo.svg'
+import icon from '../assets/svg/icon.svg'
 
 const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
   const [dateTimeToExpry, setDateTimeToExpry] = useState(0);
@@ -20,7 +22,10 @@ const NavBar = ({ width, setOpenNavigator,openNavigator }) => {
           <ToggleList onClick={() => setOpenNavigator((prev) => !prev)} openNavigator={openNavigator}>
             <FontAwesomeIcon icon={faListCheck} fade={!openNavigator} size="xl" style={{color: "#000000",}} />
           </ToggleList>
-          <Logo></Logo>
+          <Logo>
+            <img src={logo} alt="" />
+            <img src={icon} alt="" />
+          </Logo>
         </Right>
         <Center>
           <div>
@@ -53,38 +58,58 @@ const ToggleList = styled.div`
   cursor: pointer;
 `;
 
+
+ 
 const SubmitButton = styled.button`
+  border: 0;
+  background: linear-gradient(
+    157.81deg,
+    #af69ee 42.04%,
+    #6e4bd8 55.12%,
+    #5348b6 71.54%,
+    #4a4baf 100%
+  );
+  background-size: 400% 400%;
   display: flex;
   gap: 10px;
   align-items: center;
-  background-color: #52d830;
   padding: 12px 25px;
   font-size: 18px;
   letter-spacing: 1.3px;
   font-weight: 600;
   text-transform: uppercase;
-  
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid #72bb60;
-  box-shadow: 2px 3px 1px 0px #72bb60;
   color: white;
+  transition: background-position 0.5s ease;
+
+  &:hover {
+    background-position: 100% 0;
+  }
 `;
 
-const Logo = styled.p`
-  padding: 0;
-  margin: 0;
-  font-size: xx-large;
-  font-weight: 700;
-  color: #30c4d8;
+const Logo = styled.div`
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-  &:before{
-      content: 'PenQuiz';
-
-      @media (max-width: 768px) {
-          content: 'PQ';
-      }
+  @media (max-width: 768px) {
+    img:first-child {
+      display: none;
+    }
+    img:last-child {
+      width: 75px;
+    }
+    
   }
+
+  @media (min-width: 768px) {
+    img:last-child {
+      display: none;
+    }
+  }
+  
 `;
 
 const Right = styled.div`
@@ -110,7 +135,11 @@ const Wrapper = styled.div`
 `;
 
 const Nav = styled.div`
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `;
 
 export default NavBar;

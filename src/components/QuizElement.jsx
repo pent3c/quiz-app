@@ -188,19 +188,25 @@ const ImageGrid = styled.div`
   grid-template-columns: repeat(2, 1fr);
 `;
 
-const QuizId = styled.p`
+const QuizId = styled.div`
+  margin: 10px 0px;
+  padding: 5px 5px;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   font-weight: 600;
   display: grid;
   place-content: center;
   width: 25px;
   height: 25px;
   border-radius: 50px;
-  background-color: #b9b9b9;
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1);
-  border: 1px solid #a1a1a13d;
+
 `;
 
 const QuizChoices = styled.div`
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,32 +219,47 @@ const QuizChoices = styled.div`
 `;
 
 const Choice = styled.div`
+
+ 
+background: rgba(255, 255, 255, 0.2);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+
+
+
+color: white;
   display: flex;
   align-items: center;
   gap: 20px;
-  background-color: ${(props) => (props.isSelected ? "#30c4d8" : "#fff")};
+
+  
+  background: ${(props) => (props.isSelected ? "linear-gradient(157.81deg,#af69ee,#4a4baf 100%)" : "rgba(255, 255, 255, 0.2)")};
+
+  background-size: 200% 200%;
+  animation: moveBackground 5s ease infinite;
+
+  @keyframes moveBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
   width: 100%;
   padding: 15px 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  border: 2px solid ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
-  box-shadow: 5px 8px 1px 0px
-    ${(props) => (props.isSelected ? "#1f8592" : "#adadad")};
+  border: 1px solid ${(props) => (props.isSelected ? "#4a4baf" : "rgba(255, 255, 255, 0.3)")};
+    ${(props) => (props.isSelected ? "#4a4baf" : "rgba(255, 255, 255, 0.3)")};
 
-  transition: 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
-
-  p {
-    /* color: ${(props) => (props.isSelected ? "#ffffff" : "#000000")}; */
-    /* background-color: ${(props) =>
-      props.isSelected ? "#30c4d8" : "#fff"}; */
-    background-color: white;
-    color: black;
-  }
-  :hover:not(${(props) => !props.isSelected}) {
-    background-color: #e7e7e734;
-    /* color: white; */
-  }
 `;
+
 
 const Title = styled.h2`
   font-size: 18px;
@@ -250,18 +271,20 @@ const Text = styled.p`
 `;
 
 const Header = styled.div`
+  color: white;
   text-align: center;
 `;
 
 const Quiz = styled.div`
   /* From https://css.glass */
   /* From https://css.glass */
-  background: #f5f5f5;
+   
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(2.5px);
-  -webkit-backdrop-filter: blur(2.5px);
-  border: 1px solid rgba(255, 255, 255, 0.47);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   padding: 40px 0;
   border-radius: 15px;
   display: flex;
