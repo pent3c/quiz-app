@@ -268,6 +268,7 @@ const Quiz = styled.div`
   flex-direction: column;
   align-items: center;
   width: 70%;
+  max-width: 768px;
 
   @media (max-width: 768px) {
     width: 100%;
