@@ -25,6 +25,10 @@ const ExpiredNotice = () => {
     </div>
   );
 };
+
+
+const zf0 = (v) => v.toString().padStart(2, "0");
+
 const ShowCounter = ({ days, hours, minutes, seconds }) => {
   return (
     <div className="show-counter">
@@ -38,11 +42,11 @@ const ShowCounter = ({ days, hours, minutes, seconds }) => {
       >
         {/* <DateTimeDisplay value={days} type={"Days"} isDanger={days <= 3} />
         <p>:</p> */}
-        <DateTimeDisplay value={hours} type={"Hours"} isDanger={false} />
+        <DateTimeDisplay value={zf0(hours)} type={"Hours"} isDanger={false} />
         <p>:</p>
-        <DateTimeDisplay value={minutes} type={"Mins"} isDanger={false} />
+        <DateTimeDisplay value={zf0(minutes)} type={"Mins"} isDanger={false} />
         <p>:</p>
-        <DateTimeDisplay value={seconds} type={"Seconds"} isDanger={false} />
+        <DateTimeDisplay value={zf0(seconds)} type={"Seconds"} isDanger={false} />
       </div>
     </div>
   );
